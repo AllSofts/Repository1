@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yang.Dao.MemberDao">
+
+	  <resultMap type="com.yang.Model.Member"  id="m1">
+	  
+	  	
+          <id  column="selfid"  property="selfid"/>
+          
+          <result column="factionsid"  property="factionsid" />
+          
+          <result  column="selfname"  property="selfname"/>
+          
+          <result  column="introduction"  property="introduction"/>
+           
+        <association property="factions"  javaType="com.yang.Model.Factions"  column="factionsid"  select="SelectFactionsByFactionsid">
+        </association>
+         
+           
+	  </resultMap>
+	  
+	  <select id="SelectFactionsByFactionsid" parameterType="int"  resultType="Factions">
+	  	   select * from factions where id=#{factionsid}
+	  </select>
+
+
+	<delete id="DeleteAllMember" parameterType="int" >
+		delete from member where factionsid = #{id}
+	</delete>
+	<insert id="InsertMember" parameterType="Member">
+		insert into member values(#{selfid},#{factionsid},#{selfname},#{introduction})
+	</insert>
+	
+	<select id="SearchAllMember"  resultMap="m1">
+		    select * from member
+	</select>
+	
+	<delete id="DeleteMember" parameterType="int" >
+		delete from member where selfid = #{selfid}
+	</delete>
+	
+	<select id="SearchSingleMember" parameterType="int"  resultType="Member">
+		select * from member where selfid=#{selfid}
+	</select>
+	
+	<update id="SaveMember" >
+		update member set selfid=#{selfid} ,factionsid=#{factionsid},selfname=#{selfname},introduction=#{introduction} where selfid = #{oldselfid}
+	</update>
+</mapper>
+
+

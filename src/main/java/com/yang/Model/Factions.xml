@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yang.Dao.FactionsDao">
+	
+    <insert  id="InsertFactions"  parameterType="Factions">
+    
+         insert into factions values(#{id},#{factionsname},#{factionsdescribe},#{number})
+    
+    </insert>
+    
+    <select id="SearchAllFactions" resultType="Factions">
+    	select * from factions
+    </select>
+    
+    <delete id="DeleteFactions" parameterType="int">
+    	delete from factions where id=#{id}
+    </delete>
+    <!-- 注意！！！！！！！！！！！！！！ -->
+    <select id="SearchSingleFactions" parameterType="int" resultType="Factions">
+    	select * from factions where id=#{id}
+    </select>
+    
+    <update id="SaveSingleFactions" >
+    	update factions set id = #{id}, factionsname = #{factionsname},factionsdescribe=#{factionsdescribe},number=#{number} where id=#{oldid}   
+    </update>
+</mapper>
+
+
+
