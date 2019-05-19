@@ -53,7 +53,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
+		<!-- https://mvnrepository.com/artifact/javax.servlet/jstl-->
 		
 	</dependencies>
 
